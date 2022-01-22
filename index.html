@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/sweetalert.css">
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.4/axios.min.js"></script>
+
+
+	<title>Catalogo de Productos</title>
+</head>
+<body>
+	
+	<div id="app">
+		<div class="container">
+			
+      <form action="">
+        <div class="row">
+          <div class="col-md-3">
+            <input type="text" name="" id="" placeholder="Nombre(s):" class="form-control" v-model="xname">
+          </div>
+          <div class="col-md-3">
+            <input type="text" name="" id="" placeholder="Apellido:" class="form-control" v-model="xlast_name"  >
+          </div>
+          
+          <div class="col-md-3">
+            <input type="text" name="" id="" placeholder="Correo:" class="form-control"  v-model="xmail" >
+
+          </div>
+          <div class="col-md-2">
+            <input type="text" name="" id="" placeholder="Telefono:" class="form-control" v-model="xphone"  >
+
+          </div>
+          <div class="col-md-1">
+            <button v-on:click="listarMoviles" type="button" class="btn btn-navy" id="buscarTrab">Buscar</button>
+          </div>
+        </div>
+      </form>
+			<div class="row">
+				<div class="offset-1"></div>
+				<div class="col-md-10 col-xs-10">
+					<table class="table table-responsive">
+						<tr>
+							<th>Nombre</th>
+							<th>Apellido</th>
+							<th>E-Mail</th>
+							<th>Teléfono</th>
+							<th>Modificar</th>
+							<th>Eliminar</th>						
+						</tr>
+						 <tr v-for="item in moviles">
+							<td v-text="item.name"></td>
+							<td v-text="item.last_name"></td>
+							<td v-text="item.email"></td>
+							<td v-text="item.phone"></td>
+              <td><button type="button" v-on:click="mod(item.id_employees)" class="btn btn-warning">Modificar</button></td>
+              <td><button type="button" v-on:click="disb(item.id_employees)" class="btn btn-danger">Eliminar</button></td>
+
+							<!--<td>
+								<div class="form-group"><input type="text" class="form-control"></div>
+							</td>-->
+						</tr>
+					</table>
+				</div>
+				<div class="offset-1"></div>
+			</div>
+
+      <div class="row">       
+                <div class="col">        
+                    <button v-on:click="limpiarRegistro" id="abrirMenuAdd" data-toggle="modal" data-target="#exampleModal" class="btn btn-success" title="Nuevo">Agregar</button>
+                </div>  
+      </div>
+		</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Empleado</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <input type="hidden" v-model="new_id">
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Nombre(s):</label>
+            <input type="text" class="form-control" id="recipient-name" v-model="new_name">
+          </div>
+          <div class="form-group">
+            <label for="recipient-last-name" class="col-form-label">Apellido:</label>
+            <input type="text" class="form-control" id="recipient-last-name" v-model="new_last_name">
+
+          </div>
+          <div class="form-group">
+            <label for="recipient-phone" class="col-form-label">Telefono:</label>
+            <input type="text" class="form-control" id="recipient-phone" v-model="new_phone">
+
+          </div>
+          <div class="form-group">
+            <label for="recipient-mail" class="col-form-label">Correo Electrónico:</label>
+            <input type="text" class="form-control" id="recipient-mail" v-model="new_mail" >
+
+          </div>
+          <!--<div class="form-group">
+          	<label for="code-select" class="col-form-label" >Departamento:</label>
+          	<select id="code-select" class="form-control" v-model="selected">
+			  <option v-for="option in options" v-bind:value="option.valuet">
+			    {{ option.textt }}
+			  </option>
+			</select>
+          </div>-->
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-success" v-on:click="agregarEmp" >Agregar</button>
+      </div>
+    </div>
+  </div>
+</div>
+	</div>
+
+
+ 
+
+    <!-- Jquery -->
+    <script src="js/jquery.js"></script>
+    <!-- Bootstrap js -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- SweetAlert js -->
+    <script src="js/sweetalert.min.js"></script>
+    <script src="js/principal_catalogo.js"></script>
+</body>
+</html>
